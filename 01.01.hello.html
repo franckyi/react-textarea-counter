@@ -7,28 +7,44 @@
     <title>Ciao, React</title>
 </head>
 <body>
-    <div id="app">
-<!-- l'app viene renderizzata qui -->
-    </div>
+    <div id="nojsx"></div>
+    <div id="jsx"></div>
+    <div id="function"></div>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>  
     <script src="https://unpkg.com/babel-standalone/babel.min.js" crossorigin></script>  
+    
     <!-- senza JSX -->
-    <!-- <script>
+    <script>
         ReactDOM.render(
             React.createElement('div', {id: 'test'},
-                React.createElement('h1', null, 'Componente nidificato')
+                React.createElement('h1', null, 'Senza JSX')
             ),
-            document.getElementById('app')
+            document.getElementById('nojsx')
         );
-    </script>   -->
+    </script>  
+
     <!-- con JSX -->
     <script type="text/babel">
         ReactDOM.render(
             <div id="test">
-                <h1>Componente nidificato</h1>
+                <h1>Uso JSX</h1>
             </div>,
-            document.getElementById('app')
+            document.getElementById('jsx')
+        );
+    </script>  
+
+    <!-- function component -->
+    <script type="text/babel">
+        const FunctionComponent = function() {
+            // return React.createElement('h1', {id: 'function'}, 'Function component')
+            return <h1 id="function">Function component</h1>
+        }
+
+        ReactDOM.render(
+            // FunctionComponent(),
+            <FunctionComponent />,
+            document.getElementById('function')
         );
     </script>  
 
