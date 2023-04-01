@@ -10,6 +10,7 @@
     <div id="nojsx"></div>
     <div id="jsx"></div>
     <div id="function"></div>
+    <div id="class"></div>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>  
     <script src="https://unpkg.com/babel-standalone/babel.min.js" crossorigin></script>  
@@ -18,7 +19,7 @@
     <script>
         ReactDOM.render(
             React.createElement('div', {id: 'test'},
-                React.createElement('h1', null, 'Senza JSX')
+                React.createElement('a', { href: "https://cosi.cosi" }, 'Senza JSX')
             ),
             document.getElementById('nojsx')
         );
@@ -27,9 +28,10 @@
     <!-- con JSX -->
     <script type="text/babel">
         ReactDOM.render(
-            <div id="test">
-                <h1>Uso JSX</h1>
-            </div>,
+            <ol id="test">
+                <li>Uso la</li>
+                <li>sintassi JSX</li>
+            </ol>,
             document.getElementById('jsx')
         );
     </script>  
@@ -47,6 +49,20 @@
             document.getElementById('function')
         );
     </script>  
+
+        <!-- class component -->
+        <script type="text/babel">
+            class ClassComponent extends React.Component {
+                render() {
+                    return <p id="class"><em>Class component</em></p>
+                }
+            }
+    
+            ReactDOM.render(
+                <ClassComponent />,
+                document.getElementById('class')
+            );
+        </script>  
 
 </body>
 </html>
