@@ -13,11 +13,21 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>  
     <script src="https://unpkg.com/babel-standalone/babel.min.js" crossorigin></script>  
-    <script type="text/babel">
+    <!-- senza JSX -->
+    <!-- <script>
         ReactDOM.render(
             React.createElement('div', {id: 'test'},
                 React.createElement('h1', null, 'Componente nidificato')
             ),
+            document.getElementById('app')
+        );
+    </script>   -->
+    <!-- con JSX -->
+    <script type="text/babel">
+        ReactDOM.render(
+            <div id="test">
+                <h1>Componente nidificato</h1>
+            </div>,
             document.getElementById('app')
         );
     </script>  
