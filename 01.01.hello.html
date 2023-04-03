@@ -40,12 +40,16 @@
     <script type="text/babel">
         const FunctionComponent = function(props) {
             // return React.createElement('h1', {id: 'function'}, 'Function component')
-            return <h1 id="function">Function component {props.name} detto {props.nickname}</h1>
+            return <h1 id="function">Function component {props.nickname} {props.role} {props.color}</h1>
+        };
+        FunctionComponent.defaultProps = {
+            role : "dev",
+            color: 'yellow',
         }
 
         ReactDOM.render(
             // FunctionComponent(),
-            <FunctionComponent name="Francky" nickname="Franckytiello"/>,
+            <FunctionComponent nickname="Franckytiello"/>,
             document.getElementById('function')
         );
     </script>  
@@ -54,12 +58,13 @@
         <script type="text/babel">
             
             class ClassComponent extends React.Component {
-                name = 'Francky';
                 render() {
-                    return <p id="class"><em>{this.props.componentType} - {this.props.role}</em></p>
+                    return <p id="class"><em>{this.props.componentType} - {this.props.role} I love {this.props.favoriteFramework}</em></p>
                 }
             }
-    
+            ClassComponent.defaultProps = {
+                favoriteFramework : 'React',
+            }
             ReactDOM.render(
                 <ClassComponent componentType="Class component" role="developer"/>,
                 document.getElementById('class')
