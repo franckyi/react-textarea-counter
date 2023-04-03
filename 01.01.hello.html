@@ -38,23 +38,25 @@
 
     <!-- function component -->
     <script type="text/babel">
-        const FunctionComponent = function() {
+        const FunctionComponent = function(props) {
             // return React.createElement('h1', {id: 'function'}, 'Function component')
-            return <h1 id="function">Function component</h1>
+            return <h1 id="function">Function component {props.name} {props.nickname}</h1>
         }
 
         ReactDOM.render(
             // FunctionComponent(),
-            <FunctionComponent />,
+            <FunctionComponent name="Francky" nickname="Franckytiello"/>,
             document.getElementById('function')
         );
     </script>  
 
         <!-- class component -->
         <script type="text/babel">
+            
             class ClassComponent extends React.Component {
+                name = 'Francky';
                 render() {
-                    return <p id="class"><em>Class component</em></p>
+                    return <p id="class"><em>Class component {this.props.name}</em></p>
                 }
             }
     
