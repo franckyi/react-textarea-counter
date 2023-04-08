@@ -1,76 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ciao, React</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="nojsx"></div>
     <div id="jsx"></div>
     <div id="function"></div>
     <div id="class"></div>
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>  
-    <script src="https://unpkg.com/babel-standalone/babel.min.js" crossorigin></script>  
-    
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/babel-standalone/babel.min.js"
+      crossorigin
+    ></script>
+
     <!-- senza JSX -->
     <script>
-        ReactDOM.render(
-            React.createElement('div', {id: 'test'},
-                React.createElement('a', { href: "https://cosi.cosi" }, 'Senza JSX')
-            ),
-            document.getElementById('nojsx')
-        );
-    </script>  
+      ReactDOM.render(
+        React.createElement(
+          "div",
+          { id: "test" },
+          React.createElement("a", { href: "https://cosi.cosi" }, "Senza JSX")
+        ),
+        document.getElementById("nojsx")
+      );
+    </script>
 
     <!-- con JSX -->
     <script type="text/babel">
-        ReactDOM.render(
-            <ol id="test">
-                <li>Uso la</li>
-                <li>sintassi JSX</li>
-            </ol>,
-            document.getElementById('jsx')
-        );
-    </script>  
+      console.log("test");
+      ReactDOM.render(
+        <ol id="test">
+          <li>Uso la</li>
+          <li>sintassi JSX</li>
+        </ol>,
+        document.getElementById("jsx")
+      );
+    </script>
 
     <!-- function component -->
     <script type="text/babel">
-        const FunctionComponent = function(props) {
-            // return React.createElement('h1', {id: 'function'}, 'Function component')
-            return <h1 id="function">Function component {props.nickname} {props.role} {props.color}</h1>
-        };
-        FunctionComponent.defaultProps = {
-            role : "dev",
-            color: 'yellow',
-        }
-
-        ReactDOM.render(
-            // FunctionComponent(),
-            <FunctionComponent nickname="Franckytiello"/>,
-            document.getElementById('function')
+      const FunctionComponent = function (props) {
+        // return React.createElement('h1', {id: 'function'}, 'Function component')
+        return (
+          <h1 id="function">
+            Function component {props.nickname} {props.role} {props.color}
+          </h1>
         );
-    </script>  
+      };
+      FunctionComponent.defaultProps = {
+        role: "dev",
+        color: "yellow"
+      };
 
-        <!-- class component -->
-        <script type="text/babel">
-            
-            class ClassComponent extends React.Component {
-                render() {
-                    return <p id="class"><em>{this.props.componentType} - {this.props.role} I love {this.props.favoriteFramework}</em></p>
-                }
-            }
-            ClassComponent.defaultProps = {
-                favoriteFramework : 'React',
-            }
-            ReactDOM.render(
-                <ClassComponent componentType="Class component" role="developer"/>,
-                document.getElementById('class')
-            );
-            
-        </script>  
+      ReactDOM.render(
+        // FunctionComponent(),
+        <FunctionComponent nickname="Franckytiello" />,
+        document.getElementById("function")
+      );
+    </script>
 
-</body>
+    <!-- class component -->
+    <script type="text/babel">
+      class ClassComponent extends React.Component {
+        render() {
+          return (
+            <p id="class">
+              <em>
+                {this.props.componentType} - {this.props.role} I love{" "}
+                {this.props.favoriteFramework}
+              </em>
+            </p>
+          );
+        }
+      }
+      ClassComponent.defaultProps = {
+        favoriteFramework: "React"
+      };
+      ReactDOM.render(
+        <ClassComponent componentType="Class component" role="developer" />,
+        document.getElementById("class")
+      );
+    </script>
+  </body>
 </html>
