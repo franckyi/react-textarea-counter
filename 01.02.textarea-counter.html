@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ciao, React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/babel-standalone/babel.min.js"
+      crossorigin
+    ></script>
+
+    <!-- class component -->
+    <script type="text/babel">
+      class TextAreaCounter extends React.Component {
+        render() {
+          const text = this.props.text;
+          return (
+            <div>
+              <textarea defaultValue={text} />
+              <h3>{text.length}</h3>
+            </div>
+          );
+        }
+      }
+
+      TextAreaCounter.defaultProps = {
+        text: 'Conto quante volte premi la tastiera',
+      }
+
+      ReactDOM.render(
+        <TextAreaCounter />,
+        document.getElementById("app")
+      );
+    </script>
+  </body>
+</html>
