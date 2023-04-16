@@ -29,6 +29,23 @@
           this.state = {};
         }
 
+        componentDidMount() {
+          console.log('componentDidMount');
+        }
+        componentWillUnmount() {
+          console.log('componentWillUnmount');
+        }
+        componentDidUpdate(prevProps, prevState, snapshot) {
+          console.log('componentDidUpdate');
+        }
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+          console.log('getSnapshotBeforeUpdate');
+        }
+        ShouldComponentUpdate(newProps, newState) {
+          console.log('ShouldComponentUpdate');
+        }
+
+
         onTextChange = (event) => {
           this.setState({
             text: event.target.value,
