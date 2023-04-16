@@ -35,8 +35,13 @@
         componentWillUnmount() {
           console.log('componentWillUnmount');
         }
-        componentDidUpdate(prevProps, prevState, snapshot) {
+        componentDidUpdate(prevProps, prevState) {
           console.log('componentDidUpdate');
+          if (this.state.text.length > 10) {
+            this.setState({
+              text: prevState.text || this.props.text,
+            });
+          }
         }
         getSnapshotBeforeUpdate(prevProps, prevState) {
           console.log('getSnapshotBeforeUpdate');
