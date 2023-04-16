@@ -37,17 +37,18 @@
         }
         componentDidUpdate(prevProps, prevState) {
           console.log('componentDidUpdate');
-          if (this.state.text.length > 10) {
-            this.setState({
-              text: prevState.text || this.props.text,
-            });
-          }
+          // if (this.state.text.length > 10) {
+          //   this.setState({
+          //     text: prevState.text || this.props.text,
+          //   });
+          // }
         }
         getSnapshotBeforeUpdate(prevProps, prevState) {
           console.log('getSnapshotBeforeUpdate');
         }
-        ShouldComponentUpdate(newProps, newState) {
-          console.log('ShouldComponentUpdate');
+        shouldComponentUpdate(_, newState) {
+          console.log('shouldComponentUpdate');
+          return newState.text.length > 10 ? false : true;
         }
 
 
