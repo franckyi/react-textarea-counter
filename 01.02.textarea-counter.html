@@ -23,26 +23,46 @@
 
     <!-- class component -->
     <script type="text/babel">
-      class TextAreaCounter extends React.Component {
-        constructor() {
-          super();
-          this.state = {};
-        }
 
+      class LifeCicleLoggerComponent extends React.Component {
+        static getName() {}
         componentDidMount() {
-          console.log('componentDidMount');
+          console.log(this.constructor.getName() + '::componentDidMount');
         }
         componentWillUnmount() {
-          console.log('componentWillUnmount');
+          console.log(this.constructor.getName() + '::componentWillUnmount');
         }
-        componentDidUpdate(prevProps, prevState) {
-          console.log('componentDidUpdate');
+        componentDidUpdate(prevProps, prevState, snapshot) {
+          console.log(this.constructor.getName() + '::componentDidUpdate');
           // if (this.state.text.length > 10) {
           //   this.setState({
           //     text: prevState.text || this.props.text,
           //   });
           // }
         }
+      }
+
+      class Counter extends LifeCicleLoggerComponent {
+        static geName() {
+          return 'Counter';
+        }
+        render() {
+          return <h3>{this.props.count}</h3>;
+        }
+      }
+      Counter.defaultProps = {
+        count: 0,
+      }
+
+      class TextAreaCounter extends LifeCicleLoggerComponent {
+        static getName() {
+          return 'TextAreaCounter';
+        }
+        constructor() {
+          super();
+          this.state = {};
+        }
+
         getSnapshotBeforeUpdate(prevProps, prevState) {
           console.log('getSnapshotBeforeUpdate');
         }
@@ -62,8 +82,15 @@
           const text = 'text' in this.state ? this.state.text : this.props.text;
           return (
             <div>
-              <textarea value={text} onChange= {this.onTextChange} />
-              <h3>{text.length}</h3>
+              <textarea
+                value={text}
+                onChange= {this.onTextChange}
+              />
+              <h3>
+                { text.length > 0 ?
+                  <Counter counter={ text.length} /> : null
+                }
+              </h3>
             </div>
           );
         }
