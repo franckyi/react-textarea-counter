@@ -23,9 +23,8 @@
 
     <!-- class component -->
     <script type="text/babel">
-
-      class LifeCicleLoggerComponent extends React.Component {
-        static getName() {}
+      class LifecycleLoggerComponent extends React.Component {
+        static getName() { }
         componentDidMount() {
           console.log(this.constructor.getName() + '::componentDidMount');
         }
@@ -34,16 +33,11 @@
         }
         componentDidUpdate(prevProps, prevState, snapshot) {
           console.log(this.constructor.getName() + '::componentDidUpdate');
-          // if (this.state.text.length > 10) {
-          //   this.setState({
-          //     text: prevState.text || this.props.text,
-          //   });
-          // }
         }
       }
-
-      class Counter extends LifeCicleLoggerComponent {
-        static geName() {
+  
+      class Counter extends LifecycleLoggerComponent {
+        static getName() {
           return 'Counter';
         }
         render() {
@@ -52,59 +46,45 @@
       }
       Counter.defaultProps = {
         count: 0,
-      }
-
-      class TextAreaCounter extends LifeCicleLoggerComponent {
+      };
+  
+      class TextAreaCounter extends LifecycleLoggerComponent {
         static getName() {
           return 'TextAreaCounter';
         }
         constructor() {
           super();
           this.state = {};
+          this.onTextChange = this.onTextChange.bind(this);
         }
-
-        getSnapshotBeforeUpdate(prevProps, prevState) {
-          console.log('getSnapshotBeforeUpdate');
-        }
-        shouldComponentUpdate(_, newState) {
-          console.log('shouldComponentUpdate');
-          return newState.text.length > 10 ? false : true;
-        }
-
-
-        onTextChange = (event) => {
+  
+        onTextChange(event) {
           this.setState({
             text: event.target.value,
           });
-        };
-
+        }
+  
         render() {
           const text = 'text' in this.state ? this.state.text : this.props.text;
           return (
             <div>
-              <textarea
-                value={text}
-                onChange= {this.onTextChange}
-              />
-              <h3>
-                { text.length > 0 ?
-                  <Counter counter={ text.length} /> : null
-                }
-              </h3>
+              <textarea value={text} onChange={this.onTextChange} />
+              {text.length > 0 ? <Counter count={text.length} /> : null}
             </div>
           );
         }
-
       }
-
       TextAreaCounter.defaultProps = {
-        text: 'Conto quante volte premi la tastiera xyz',
-      }
-
-      ReactDOM.render(
+        text: 'Policz ile razy naciskam klawisz',
+      };
+  
+      const myTextAreaCounter = ReactDOM.render(
         <TextAreaCounter text="Francky" />,
-        document.getElementById("app")
+        document.getElementById('app'),
       );
+  
+        // Wpisz to w konsoli
+        // ReactDOM.render(React.createElement('p', null, 'Koniec liczenia!'), app)
     </script>
   </body>
 </html>
